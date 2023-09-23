@@ -1,0 +1,71 @@
+CREATE TABLE breed_groups(
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id));
+
+INSERT INTO breed_groups(name) VALUES("Sheepdogs and Cattle dogs"), ("Pinscher and Schnauzer - Molossoid and Swiss Mountain and Cattledogs"), ("Terriers");
+
+CREATE TABLE breeds(
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  breed_group_id INT NOT NULL,
+  PRIMARY KEY (id),
+  KEY breed_group_id_idx(breed_group_id)
+);
+
+INSERT INTO breeds (name, breed_group_id) VALUES ('Australian Shepherd', 1), ('Belgian Shepherd Malinois', 1), ('Mioritic Shepherd', 1), ('Boerboel', 2), ('Affenpinscher', 2), ('Dogue de Bordeaux', 2), ('Airedale Terrier', 3), ('American Pit Bull Terrier', 3), ('Australian Terrier', 3);
+
+SELECT * FROM breeds
+
+INSERT INTO breeds (name, breed_group_id) VALUES
+('Australian Shepherd', 1), ('Belgian Shepherd Malinois', 1), ('Mioritic Shepherd', 1), ('Bouvier des Flandres', 1),
+('Shetland Sheepdog', 1), ('Border Collie', 1), ('Boerboel', 2),
+ ('Affenpinscher', 2), ('Dogue de Bordeaux', 2), ('Airedale Terrier', 3), ('American Pit Bull Terrier', 3),
+ ('Australian Terrier', 3), ('Australian Silky Terrier', 3), ('Cairn Terrier', 3), ('West Highland White Terrier', 3),
+ ('Norfolk Terrier', 3), ('Norwich Terrier', 3), ('Scottish Terrier', 3), ('Scottish Sky Terrier', 3),
+ ('Dachshund', 4),('Dachshund -The Wiry Hair Variety', 4),('Long-Haired Dachshund', 4),
+ ('Akita Inu', 5),('Swedish Wallhund', 5),('Norwegian Elkhound', 5),
+ ('Dalmatian', 6),('Rhodesian Rodgeback', 6),('Basset Fauve De Bretagne', 6),
+ ('Gordon Setter', 7),('Weimaraner', 7),('Wetterhoun', 7),
+ ('Welsh Springer Spaniel', 8),('Clumber Spaniel', 8),('Curly Coated Retriever', 8),
+ ('Shih Tzu', 9),('Brussels Griffon', 9),('Cavalier King Charles Spaniel', 9),
+ ('Scottish Deerhound', 10),('Irish Wolfhound', 10),('Barzoi', 10),('Spanish Greyhound', 10),
+ ('Italian Greyhound', 10),('Ibizan Hound', 10),('Afghan Hound', 10),
+ ('Azawakh', 10),('Saluki', 10),('Sloughi', 10);
+
+
+ INSERT INTO breed_groups VALUES ("Dachshunds"),("Spitz and primitive types"),("Scent hounds and related breeds"),("Pointing Dogs"),
+ ("Retrievers - Flushing Dogs - Water Dogs"),("Companion and Toy Dogs"),("Sighthounds");
+
+ CREATE TABLE characteristics (
+  id INT NOT NULL AUTO_INCREMENT,
+  history TEXT,
+  description TEXT,
+  personality TEXT,
+  grooming TEXT,
+  living_conditions TEXT,
+  training TEXT,
+  usefulness TEXT,
+  image TEXT,
+  breed_id INT NOT NULL,
+  PRIMARY KEY (id),
+  KEY breed_id_idx(breed_id)
+);
+
+INSERT INTO breed_groups(name)
+VALUES ("Dachshunds"), ("Spitz and primitive types"),
+("Scent hounds and related breeds"), ("Pointing Dogs"),
+("Retrievers - Flushing Dogs - Water Dogs"),
+("Companion and Toy Dogs"), ("Sighthounds");
+
+
+INSERT INTO characteristics (history, description, personality, grooming, living_conditions, training, usefulness, image, breed_id) VALUES (
+"This breed originated in the Pyrenees Mountains, in the Basque Country, at the border between Spain and France. The Basque shepherds emigrated to Australia along with their dogs and from there, to North America where the American farmers developed the breed.",
+"It is a medium-sized dog, long rather than tall. It has a strong, flat and slightly rounded head. The muzzle is slightly pointy and is the same length or a bit smaller than the skull. The eyes are hazel - blue or a combination between these colours. The ears are triangular, set high, drooping at rest and erect when alert. The chest is prominent but not wide. The tail is short, of maximum 10 cm, straight and sometimes missing. The fur is double-layered with a thick inner layer and an outer layer that is of medium length, straight or slightly wavy. The males have thicker hair than the females. The fur has various colours: brick, dark red, blue - black, pure black, pure brown, with or without white or brown patches.",
+"It is an active, intelligent dog that likes to learn and work. It is a very good watchdog, watchful and always alert. As a pet it is loyal, tempered, playful and attached to the family. It is friendly with children and careful with strangers. It gets along well with other dogs. It has a powerful hunting instinct and may cause problems with small animals if it was not well socialized.',
+"The fur needs grooming and brushing especially during spring time, in the shedding period; in the rest of the time it doesn't require much grooming.",
+"It needs daily exercise, space to move and it should also be involved in activities. It is happy with a sportive master who gives it a lot of attention.",
+"It is an easy dog to train because it is intelligent, learns quickly and with pleasure. The training exercises must be done regulary and the dog must be kept busy as long as possible. Agility, flyball or training competitions are recommended.",
+"They are used, in the West of the United States, to lead and guard flocks or as companions. They can also be used as utility dogs to guide disabled people.",
+"https://www.gettyimages.com.au/detail/photo/close-up-of-australian-shepherd-sitting-on-wood-royalty-free-image/1309830821?adppopup=true",
+1);
