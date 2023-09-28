@@ -16,6 +16,8 @@ class BreedItem(Resource):
     parser.add_argument("image")
 
     def fetch_breed(self, id, connection):
+        """executes a SQL query to retrieve the breed with the specified ID,
+        and returns the fetched breed as a dictionary."""
         breeds_cursor = connection.cursor(dictionary=True)
         breeds_cursor.execute("select * from breeds where id=%s", (id,))
 
@@ -25,6 +27,7 @@ class BreedItem(Resource):
         return breed
 
     def fetch_breed_with_characteristics(self, id, connection):
+        """retrieve information about breed characteristics with the ID provided"""
         breed = self.fetch_breed(id, connection)
 
         if breed is None:
@@ -39,7 +42,7 @@ class BreedItem(Resource):
         return breed
 
     def get(self, id):
-
+        """fetches breed information along with their characteristics based on the breed ID"""
         connection = mysql.connector.connect(**db_config)
 
         breed = self.fetch_breed_with_characteristics(id, connection)
@@ -52,6 +55,8 @@ class BreedItem(Resource):
         return {"data": breed}, 200
 
     def patch(self, id):
+        """fetches the breed based on the provided breed ID and
+        executes the update query with the appropriate values."""
 
         connection = mysql.connector.connect(**db_config)
         breed = self.fetch_breed(id, connection)
@@ -86,6 +91,7 @@ class BreedItem(Resource):
         return {"data": breed}, 200
 
     def delete(self, id):
+        """removes a breed and its associated characteristics from the database based on the given breed ID."""
         connection = mysql.connector.connect(**db_config)
         breed = self.fetch_breed(id, connection)
 

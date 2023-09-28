@@ -4,12 +4,16 @@ import mysql.connector
 
 
 class BreedGroupList(Resource):
-    """returns the breed groups from mySQL database(dog-breeds) in JSON format"""
+    """returns the breed group list from mySQL database(dog-breeds) in JSON format"""
 
     parser = reqparse.RequestParser()
     parser.add_argument("name", required=True, help="Property 'name' is required!")
 
     def get(self):
+        """Establish a connection to the PlanetScale MySQL database,
+        create a cursor to execute MySQL queries,
+        fetch the results
+        """
         connection = mysql.connector.connect(**db_config)
 
         cursor = connection.cursor(dictionary=True)
@@ -23,6 +27,7 @@ class BreedGroupList(Resource):
         return {"data": breed_groups}, 200
 
     def post(self):
+        """Parse the data and execute a query to add a new breed group"""
         connection = mysql.connector.connect(**db_config)
 
         cursor = connection.cursor(dictionary=True)
@@ -43,7 +48,7 @@ class BreedGroupList(Resource):
 
 
 class BreedGroupItem(Resource):
-    """returns the breeds from the selected breed group"""
+    """returns the breed list from the selected breed group"""
 
     def get(self, id):
         connection = mysql.connector.connect(**db_config)
